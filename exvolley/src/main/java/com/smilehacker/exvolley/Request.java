@@ -22,7 +22,7 @@ import android.os.Looper;
 import android.os.SystemClock;
 import android.text.TextUtils;
 
-import com.android.volley.VolleyLog.MarkerLog;
+import com.smilehacker.exvolley.VolleyLog.MarkerLog;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

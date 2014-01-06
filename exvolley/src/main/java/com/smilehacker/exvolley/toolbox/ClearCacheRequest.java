@@ -19,10 +19,10 @@ package com.smilehacker.exvolley.toolbox;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.android.volley.Cache;
-import com.android.volley.NetworkResponse;
-import com.android.volley.Request;
-import com.android.volley.Response;
+import com.smilehacker.exvolley.Cache;
+import com.smilehacker.exvolley.NetworkResponse;
+import com.smilehacker.exvolley.Request;
+import com.smilehacker.exvolley.Response;
 
 /**
  * A synthetic request used for clearing the cache.
@@ -56,7 +56,7 @@ public class ClearCacheRequest extends Request<Object> {
 
     @Override
     public Priority getPriority() {
-        return Priority.IMMEDIATE;
+        return Request.Priority.IMMEDIATE;
     }
 
     @Override
