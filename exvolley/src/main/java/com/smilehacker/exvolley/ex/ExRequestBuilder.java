@@ -121,7 +121,7 @@ public class ExRequestBuilder {
         mRequestQueue.cancelAll(mTag);
     }
 
-    public void excute() {
+    public ExRequest excute() {
 
         if (mMethod == Request.Method.GET) {
             mUrl = UrlUtils.UrlBuilder(mUrl, mRequestParams);
@@ -149,6 +149,8 @@ public class ExRequestBuilder {
         mRequest.setRequestBody(mRequestBody);
 
         mRequestQueue.add(mRequest);
+
+        return mRequest;
     }
 
 
