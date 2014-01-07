@@ -121,6 +121,14 @@ public class ExRequestBuilder {
         mRequestQueue.cancelAll(mTag);
     }
 
+    public void cancel(Object tag) {
+        mRequestQueue.cancelAll(tag);
+    }
+
+    public RequestQueue getRequestQueue() {
+        return mRequestQueue;
+    }
+
     public ExRequest excute() {
 
         if (mMethod == Request.Method.GET) {
@@ -133,8 +141,6 @@ public class ExRequestBuilder {
             mRequest = new ExRequest<JSONObject>(mMethod, mUrl, mListener, mErrorListener, mResponseClass);
         } else if (mResponseClass.equals(JSONArray.class)) {
             mRequest = new ExRequest<JSONArray>(mMethod, mUrl, mListener, mErrorListener, mResponseClass);
-        } else if (mResponseClass.equals(JSONArray.class)) {
-            mRequest = new ExRequest<Object>(mMethod, mUrl, mListener, mErrorListener, mResponseClass);
         }
 
         if (mMethod == Request.Method.PUT || mMethod == Request.Method.POST) {
