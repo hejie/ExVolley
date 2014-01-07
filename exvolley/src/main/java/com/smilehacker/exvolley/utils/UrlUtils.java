@@ -26,7 +26,7 @@ public class UrlUtils {
         return map;
     }
 
-    public static String UrlBuilder(String baseUrl, HashMap<String, Object> params) {
+    public static String UrlBuilder(String baseUrl, Map<String, String> params) {
         StringBuffer url = new StringBuffer();
         url.append(baseUrl);
         if (params != null) {

@@ -3,12 +3,11 @@ package com.smilehacker.exvolley.ex;
 import com.smilehacker.exvolley.Request;
 import com.smilehacker.exvolley.RequestQueue;
 import com.smilehacker.exvolley.Response;
-import com.smilehacker.exvolley.VolleyError;
+import com.smilehacker.exvolley.utils.UrlUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +23,7 @@ public class ExRequestBuilder {
     private int mMethod;
     private String mUrl;
     private Map<String, String> mRequestParams;
+    private Map<String, String> mParams;
     private Map<String, String> mHeaders;
     private String mRequestBody;
 
@@ -100,6 +100,7 @@ public class ExRequestBuilder {
         return this;
     }
 
+    // TODO 待到jdk8时自动判断泛型type
     public ExRequestBuilder setResponseListener(Response.Listener<?> listener, Class responseClass) {
         mListener = listener;
         mResponseClass = responseClass;
@@ -121,21 +122,30 @@ public class ExRequestBuilder {
     }
 
     public void excute() {
+
+        if (mMethod == Request.Method.GET) {
+            mUrl = UrlUtils.UrlBuilder(mUrl, mRequestParams);
+        }
+
         if (mResponseClass.equals(String.class) ) {
-            mRequest = new ExRequest<String>(mMethod, mUrl, mListener, mErrorListener);
+            mRequest = new ExRequest<String>(mMethod, mUrl, mListener, mErrorListener, mResponseClass);
         } else if (mResponseClass.equals(JSONObject.class)) {
-            mRequest = new ExRequest<JSONObject>(mMethod, mUrl, mListener, mErrorListener);
+            mRequest = new ExRequest<JSONObject>(mMethod, mUrl, mListener, mErrorListener, mResponseClass);
         } else if (mResponseClass.equals(JSONArray.class)) {
-            mRequest = new ExRequest<JSONArray>(mMethod, mUrl, mListener, mErrorListener);
+            mRequest = new ExRequest<JSONArray>(mMethod, mUrl, mListener, mErrorListener, mResponseClass);
         } else if (mResponseClass.equals(JSONArray.class)) {
-            mRequest = new ExRequest<Object>(mMethod, mUrl, mListener, mErrorListener);
+            mRequest = new ExRequest<Object>(mMethod, mUrl, mListener, mErrorListener, mResponseClass);
+        }
+
+        if (mMethod == Request.Method.PUT || mMethod == Request.Method.POST) {
+            mRequest.setParams(mRequestParams);
         }
 
         mRequest.setTag(mTag);
         mRequest.setShouldCache(mShouldCache);
         mRequest.setContentType(mContentType);
         mRequest.setHeader(mHeaders);
-        mRequest.setParams(mRequestParams);
+
         mRequest.setRequestBody(mRequestBody);
 
         mRequestQueue.add(mRequest);
