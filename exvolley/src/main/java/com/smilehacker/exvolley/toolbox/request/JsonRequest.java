@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.smilehacker.exvolley.toolbox;
+package com.smilehacker.exvolley.toolbox.request;
 
 
 import com.smilehacker.exvolley.NetworkResponse;

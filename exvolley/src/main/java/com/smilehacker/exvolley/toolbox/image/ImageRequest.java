@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.smilehacker.exvolley.toolbox;
+package com.smilehacker.exvolley.toolbox.image;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -26,6 +26,7 @@ import com.smilehacker.exvolley.ParseError;
 import com.smilehacker.exvolley.Request;
 import com.smilehacker.exvolley.Response;
 import com.smilehacker.exvolley.VolleyLog;
+import com.smilehacker.exvolley.toolbox.HttpHeaderParser;
 
 
 /**

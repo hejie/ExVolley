@@ -23,7 +23,6 @@ public class ExRequestBuilder {
     private int mMethod;
     private String mUrl;
     private Map<String, String> mRequestParams;
-    private Map<String, String> mParams;
     private Map<String, String> mHeaders;
     private String mRequestBody;
 
@@ -157,6 +156,10 @@ public class ExRequestBuilder {
         mRequestQueue.add(mRequest);
 
         return mRequest;
+    }
+
+    public ExRequest Excalibur() {
+        return excute();
     }
 
 

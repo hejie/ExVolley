@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.smilehacker.exvolley.RequestQueue;
 import com.smilehacker.exvolley.toolbox.OkVolley;
+import com.smilehacker.exvolley.toolbox.Volley;
 
 /**
  * Created by kleist on 14-1-6.
@@ -28,6 +29,15 @@ public class ExVolley {
         }
 
         return new ExRequestBuilder(mRequestQueue);
+    }
+
+    public RequestQueue createDefaultRequestQueue(Context context) {
+        try {
+            Class.forName("com.squareup.okhttp.OkHttpClient");
+            return OkVolley.newRequestQueue(context.getApplicationContext());
+        } catch (ClassNotFoundException e) {
+            return Volley.newRequestQueue(context.getApplicationContext());
+        }
     }
 
 }

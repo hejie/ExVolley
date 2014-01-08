@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-package com.smilehacker.exvolley.toolbox;
+package com.smilehacker.exvolley.toolbox.request;
 
 
 import com.smilehacker.exvolley.NetworkResponse;
 import com.smilehacker.exvolley.Request;
 import com.smilehacker.exvolley.Response;
+import com.smilehacker.exvolley.toolbox.HttpHeaderParser;
 
 import java.io.UnsupportedEncodingException;
 

@@ -13,14 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.smilehacker.exvolley.toolbox;
+package com.smilehacker.exvolley.toolbox.image;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.ImageView;
-
 
 import com.smilehacker.exvolley.Request;
 import com.smilehacker.exvolley.RequestQueue;
