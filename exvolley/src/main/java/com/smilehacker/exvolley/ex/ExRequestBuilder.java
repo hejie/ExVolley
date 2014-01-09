@@ -33,6 +33,7 @@ public class ExRequestBuilder {
     private Class mResponseClass;
     private Boolean mShouldCache = false;
     private String mContentType = null;
+    private Boolean mAsUrlParams = false;
 
 
     public ExRequestBuilder(RequestQueue requestQueue) {
@@ -84,6 +85,11 @@ public class ExRequestBuilder {
         return this;
     }
 
+    public ExRequestBuilder asUrlParams() {
+        mAsUrlParams = true;
+        return this;
+    }
+
     public ExRequestBuilder setContentType(String contentType) {
         mContentType = contentType;
         return this;
@@ -130,7 +136,7 @@ public class ExRequestBuilder {
 
     public ExRequest excute() {
 
-        if (mMethod == Request.Method.GET && mRequestParams != null && mRequestParams.size() > 0) {
+        if (mAsUrlParams || mMethod == Request.Method.GET && mRequestParams != null && mRequestParams.size() > 0) {
             mUrl = UrlUtils.UrlBuilder(mUrl, mRequestParams);
         }
 
@@ -142,7 +148,7 @@ public class ExRequestBuilder {
             mRequest = new ExRequest<JSONArray>(mMethod, mUrl, mListener, mErrorListener, mResponseClass);
         }
 
-        if (mMethod == Request.Method.PUT || mMethod == Request.Method.POST) {
+        if ((mMethod == Request.Method.PUT || mMethod == Request.Method.POST) && !mAsUrlParams) {
             mRequest.setParams(mRequestParams);
         }
 
