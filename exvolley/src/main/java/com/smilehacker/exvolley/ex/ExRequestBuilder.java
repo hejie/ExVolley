@@ -113,9 +113,19 @@ public class ExRequestBuilder {
     }
 
     public ExRequestBuilder setErrorListener(Response.ErrorListener errorListener) {
+
         mErrorListener = errorListener;
         return this;
     }
+
+    public ExRequestBuilder response(Response.Listener<?> listener, Class mResponseClass) {
+        return setResponseListener(listener, mResponseClass);
+    }
+
+    public ExRequestBuilder error(Response.ErrorListener errorListener) {
+        return setErrorListener(errorListener);
+    }
+
 
     public ExRequestBuilder setTag(Object tag) {
         mTag = tag;

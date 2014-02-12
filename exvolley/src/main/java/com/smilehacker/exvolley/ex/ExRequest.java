@@ -1,5 +1,7 @@
 package com.smilehacker.exvolley.ex;
 
+import android.util.Log;
+
 import com.smilehacker.exvolley.AuthFailureError;
 import com.smilehacker.exvolley.NetworkResponse;
 import com.smilehacker.exvolley.ParseError;

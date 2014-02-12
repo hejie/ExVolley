@@ -179,12 +179,12 @@ public class HurlStack implements HttpStack {
             Request<?> request) throws IOException, AuthFailureError {
         switch (request.getMethod()) {
             case Request.Method.GET:
-                // Not necessary to set the request method because connection defaults to GET but
-                // being explicit here.
                 connection.setRequestMethod("GET");
+                addBodyIfExists(connection, request);
                 break;
             case Request.Method.DELETE:
                 connection.setRequestMethod("DELETE");
+                addBodyIfExists(connection, request);
                 break;
             case Request.Method.POST:
                 connection.setRequestMethod("POST");
@@ -196,16 +196,19 @@ public class HurlStack implements HttpStack {
                 break;
             case Request.Method.HEAD:
                 connection.setRequestMethod("HEAD");
+                addBodyIfExists(connection, request);
                 break;
             case Request.Method.OPTIONS:
                 connection.setRequestMethod("OPTIONS");
+                addBodyIfExists(connection, request);
                 break;
             case Request.Method.TRACE:
                 connection.setRequestMethod("TRACE");
+                addBodyIfExists(connection, request);
                 break;
             case Request.Method.PATCH:
-                addBodyIfExists(connection, request);
                 connection.setRequestMethod("PATCH");
+                addBodyIfExists(connection, request);
                 break;
             default:
                 throw new IllegalStateException("Unknown method type.");

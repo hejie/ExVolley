@@ -39,4 +39,5 @@ public class OkHttpStack extends HurlStack {
     protected HttpURLConnection createConnection(URL url) throws IOException {
         return client.open(url);
     }
+
 }

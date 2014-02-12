@@ -95,9 +95,13 @@ public class HttpClientStack implements HttpStack {
             Map<String, String> additionalHeaders) throws AuthFailureError {
         switch (request.getMethod()) {
             case Request.Method.GET:
-                return new HttpGet(request.getUrl());
+                HttpGet getRequest = new HttpGet(request.getUrl());
+                getRequest.addHeader(HEADER_CONTENT_TYPE, request.getBodyContentType());
+                return getRequest;
             case Request.Method.DELETE:
-                return new HttpDelete(request.getUrl());
+                HttpDelete deleteRequest = new HttpDelete(request.getUrl());
+                deleteRequest.addHeader(HEADER_CONTENT_TYPE, request.getBodyContentType());
+                return deleteRequest;
             case Request.Method.POST: {
                 HttpPost postRequest = new HttpPost(request.getUrl());
                 postRequest.addHeader(HEADER_CONTENT_TYPE, request.getBodyContentType());
