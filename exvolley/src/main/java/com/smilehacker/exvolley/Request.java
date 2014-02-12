@@ -133,9 +133,12 @@ public abstract class Request<T> implements Comparable<Request<T>> {
     /**
      * Set a tag on this request. Can be used to cancel all requests with this
      * tag by {@link RequestQueue#cancelAll(Object)}.
+     *
+     * @return This Request object to allow for chaining.
      */
-    public void setTag(Object tag) {
+    public Request<?> setTag(Object tag) {
         mTag = tag;
+        return this;
     }
 
     /**
@@ -155,9 +158,12 @@ public abstract class Request<T> implements Comparable<Request<T>> {
 
     /**
      * Sets the retry policy for this request.
+     *
+     * @return This Request object to allow for chaining.
      */
-    public void setRetryPolicy(RetryPolicy retryPolicy) {
+    public Request<?> setRetryPolicy(RetryPolicy retryPolicy) {
         mRetryPolicy = retryPolicy;
+        return this;
     }
 
     /**
@@ -209,16 +215,22 @@ public abstract class Request<T> implements Comparable<Request<T>> {
     /**
      * Associates this request with the given queue. The request queue will be notified when this
      * request has finished.
+     *
+     * @return This Request object to allow for chaining.
      */
-    public void setRequestQueue(RequestQueue requestQueue) {
+    public Request<?> setRequestQueue(RequestQueue requestQueue) {
         mRequestQueue = requestQueue;
+        return this;
     }
 
     /**
      * Sets the sequence number of this request.  Used by {@link RequestQueue}.
+     *
+     * @return This Request object to allow for chaining.
      */
-    public final void setSequence(int sequence) {
+    public final Request<?> setSequence(int sequence) {
         mSequence = sequence;
+        return this;
     }
 
     /**
@@ -248,9 +260,12 @@ public abstract class Request<T> implements Comparable<Request<T>> {
     /**
      * Annotates this request with an entry retrieved for it from cache.
      * Used for cache coherency support.
+     *
+     * @return This Request object to allow for chaining.
      */
-    public void setCacheEntry(Cache.Entry entry) {
+    public Request<?> setCacheEntry(Cache.Entry entry) {
         mCacheEntry = entry;
+        return this;
     }
 
     /**
@@ -349,9 +364,12 @@ public abstract class Request<T> implements Comparable<Request<T>> {
 
     /**
      * Set whether or not responses to this request should be cached.
+     *
+     * @return This Request object to allow for chaining.
      */
-    public final void setShouldCache(boolean shouldCache) {
+    public final Request<?> setShouldCache(boolean shouldCache) {
         mShouldCache = shouldCache;
+        return this;
     }
 
     /**
